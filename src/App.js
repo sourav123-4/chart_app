@@ -35,6 +35,55 @@ function App() {
     ],
     []
   );
+  React.useEffect(() => {
+    // const fetchData = () =>
+    //   fetch("http://localhost:8080/order", {
+    //     method: "GET",
+    //     mode: "no-cors",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   })
+    //     .then((res) => console.log("res", res))
+    //     .catch((err) => console.log(err));
+    fetchData();
+  }, []);
+  // const fetchData = async () => {
+  //   try {
+  //     const res = await fetch(`http://localhost:8080/order`);
+  //     const data = await res.json();
+  //     console.log("data", data);
+  //     return data;
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+  const fetchData = () =>
+    fetch("http://localhost:8080/order", {
+      method: "GET",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          return response
+            .text()
+            .then((result) => Promise.reject(new Error(result)));
+        }
+
+        return response.json();
+      })
+      .then((data) => console.log("data", data))
+      // .then((data) => {
+      //   console.log(data);
+      //   return new Promise((resolve, reject) => {
+      //     resolve(data ? JSON.parse(data) : {});
+      //   });
+      // })
+      .catch((err) => console.log(err));
+  // fetchData();
   return (
     <div
       style={{
