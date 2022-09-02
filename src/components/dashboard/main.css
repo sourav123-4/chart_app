@@ -1,0 +1,127 @@
+.main{
+    display: flex;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    transition: 0.3s;
+    justify-content: space-evenly;
+    margin: 10px 8%;
+    border-radius: 5px;
+    flex-wrap: wrap;
+}
+.main-sub{
+    background: beige;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    width:500px;
+    justify-content: center;
+    padding: 10px;
+    margin: 10px;
+    font-family: sans-serif;
+}
+.main-sub1{
+    justify-content: center;
+    padding: 10px;
+    margin:10px;
+    background: beige;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    transition: 0.3s;
+}
+.div1{
+    width: 200px;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 10px;
+    height: 15vh;
+    background: azure;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    transition: 0.3s;
+}
+span{
+    margin-left: 10px;
+}
+#div2{
+    background: #d66b63;
+}
+#div3{
+    background: #c9a338;
+}
+#div4{
+    background: #20725f;
+}
+#div5{
+    background: #483D8B;
+}
+.view{
+    display: flex;
+    font-size: 14px;
+    margin:10px 8%;
+    justify-content: space-evenly;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    transition: 0.3s;
+    border-radius: 5px;
+}
+.view1{
+    background: #383f64;
+    color: #fff;
+    height: 90vh;
+    width:25%;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    transition: 0.3s;
+    font-family: system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+@media screen and (max-width: 986px) {
+    .view{
+        flex-wrap: wrap;
+    }
+    .view1{
+        margin-bottom: 25px;
+        width:70%;
+        height: fit-content;
+
+    }
+    .view2{
+        height: 600px;
+    }
+}
+@media screen and (max-width:600px){
+    .view2{
+        height: 450px;
+    }
+}
+
+.flow{
+    height: 50vh;
+    margin: 10px 8%;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    transition: 0.3s;
+    font-family: sans-serif;
+}
+.data2{
+    font-family: sans-serif;
+}
+
+.abcd{
+    display: flex;
+    align-items: center;
+    
+    font-family: sans-serif;
+
+}
+.abcd>h3{
+    margin-left: 10px;
+    color: cadetblue;
+}
+.img-div{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+.num{
+    padding-left: 15px;
+}

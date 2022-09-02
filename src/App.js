@@ -1,97 +1,60 @@
-import React from "react";
-import { Chart } from "react-charts";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux/es/exports";
+import Header from "./components/header/Header";
+import Main from "./components/dashboard/Main";
+import View from "./components/dashboard/View";
+import Flow from "./components/dashboard/Flow";
+import {
+  getAllOrdersByAmount,
+  getAllOrdersByCount,
+  getAllProductsByCount,
+  getOrderCount,
+  getProductCount,
+  getTotalAmount,
+  getTotalOrder,
+  getTotalProduct,
+  getTotalUser,
+  getUserCount,
+} from "./components/Redux/action/Action";
 
 function App() {
-  const data = React.useMemo(
-    () => [
-      {
-        label: "Series 1",
-        data: [
-          [0, 1],
-          [1, 2],
-          [2, 4],
-          [3, 2],
-          [4, 7],
-        ],
-      },
-      {
-        label: "Series 2",
-        data: [
-          [0, 3],
-          [1, 1],
-          [2, 5],
-          [3, 6],
-          [4, 4],
-        ],
-      },
-    ],
-    []
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state?.rootReducer?.AllAmountorders);
+  // const state1 = useSelector((state) => state?.rootReducer?.AllCountOrders);
+  const state2 = useSelector((state) => state?.rootReducer?.AllproductsCount);
+  // const users = useSelector((state) => state?.rootReducer?.Users);
+  // const products = useSelector((state) => state?.rootReducer?.Products);
+  // const orders = useSelector((state) => state?.rootReducer?.Orders);
+  const TotalAmount = useSelector((state) => state?.rootReducer?.TotalAmount);
+  const TotalOrders = useSelector((state) => state?.rootReducer?.TotalOrders);
+  const TotalUser = useSelector((state) => state?.rootReducer?.TotalUsers);
+  const TotalProducts = useSelector(
+    (state) => state?.rootReducer?.TotalProducts
   );
+  useEffect(() => {
+    dispatch(getAllOrdersByAmount());
+    dispatch(getAllOrdersByCount());
+    dispatch(getAllProductsByCount());
+    dispatch(getTotalOrder());
+    dispatch(getTotalProduct());
+    dispatch(getTotalUser());
+    dispatch(getTotalAmount());
+    dispatch(getOrderCount());
+    dispatch(getUserCount());
+    dispatch(getProductCount());
+  }, [dispatch]);
 
-  const axes = React.useMemo(
-    () => [
-      { primary: true, type: "linear", position: "bottom" },
-      { type: "linear", position: "left" },
-    ],
-    []
-  );
-  React.useEffect(() => {
-    // const fetchData = () =>
-    //   fetch("http://localhost:8080/order", {
-    //     method: "GET",
-    //     mode: "no-cors",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   })
-    //     .then((res) => console.log("res", res))
-    //     .catch((err) => console.log(err));
-    fetchData();
-  }, []);
-  // const fetchData = async () => {
-  //   try {
-  //     const res = await fetch(`http://localhost:8080/order`);
-  //     const data = await res.json();
-  //     console.log("data", data);
-  //     return data;
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-  const fetchData = () =>
-    fetch("http://localhost:8080/order", {
-      method: "GET",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          return response
-            .text()
-            .then((result) => Promise.reject(new Error(result)));
-        }
-
-        return response.json();
-      })
-      .then((data) => console.log("data", data))
-      // .then((data) => {
-      //   console.log(data);
-      //   return new Promise((resolve, reject) => {
-      //     resolve(data ? JSON.parse(data) : {});
-      //   });
-      // })
-      .catch((err) => console.log(err));
-  // fetchData();
   return (
-    <div
-      style={{
-        width: "800px",
-        height: "600px",
-      }}
-    >
-      <Chart data={data} axes={axes} />
+    <div>
+      <Header />
+      <Main
+        state={TotalAmount}
+        TotalOrders={TotalOrders}
+        TotalProducts={TotalProducts}
+        TotalUser={TotalUser}
+      />
+      <View chart={state2} />
+      <Flow state={state} />
     </div>
   );
 }
